@@ -5,7 +5,7 @@ SET (ProjectName            Project)
 SET (LibraryName            ${CMAKE_PROJECT_NAME}Lib)
 SET (CurrentPath            ${CMAKE_CURRENT_SOURCE_DIR})
 SET (PackagesPropertiesPath "")
-SET (PackagesNames          Utils Logger LoggerMock)
+SET (PackagesNames          )
 
 MACRO (LOG_ERROR msg)
     EXECUTE_PROCESS (COMMAND ${CMAKE_COMMAND} -E cmake_echo_color --red --bold ${msg})
