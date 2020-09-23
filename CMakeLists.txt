@@ -1,12 +1,11 @@
-PROJECT                (PackageTempName)
+PROJECT                (Bitmap)
 CMAKE_MINIMUM_REQUIRED (VERSION 3.16)
 
 SET (ProjectName            Project)
-SET (TestsName              Tests)
 SET (LibraryName            ${CMAKE_PROJECT_NAME}Lib)
 SET (CurrentPath            ${CMAKE_CURRENT_SOURCE_DIR})
 SET (PackagesPropertiesPath "")
-SET (PackagesNames          PackagesTempNames)
+SET (PackagesNames          Utils Logger LoggerMock)
 
 MACRO (LOG_ERROR msg)
     EXECUTE_PROCESS (COMMAND ${CMAKE_COMMAND} -E cmake_echo_color --red --bold ${msg})
@@ -25,9 +24,6 @@ CONAN_BASIC_SETUP ()
 SET  (ProjectIncludePath                  ${CurrentPath}/${ProjectName})
 FILE (GLOB_RECURSE ProjectFilesAndFolders ${ProjectIncludePath}/*)
 
-SET  (TestIncludePath                     ${CurrentPath}/${TestsName})
-FILE (GLOB_RECURSE TestFilesAndFolders    ${TestIncludePath}/*)
-
 MACRO (PARSE_SUBDIRECTORIES_PATHS search_directory paths)
     SET (directoryPaths "")
     FOREACH (subdirectoryPath ${search_directory})
@@ -40,7 +36,6 @@ MACRO (PARSE_SUBDIRECTORIES_PATHS search_directory paths)
 ENDMACRO ()
 
 PARSE_SUBDIRECTORIES_PATHS ("${ProjectFilesAndFolders}" ProjectPathsLists)
-PARSE_SUBDIRECTORIES_PATHS ("${TestFilesAndFolders}"    TestPathsLists)
 
 MACRO (REMOVE_FILES directory)
     FILE (GLOB removeLists ${directory}/*)
@@ -77,25 +72,9 @@ MACRO (GET_PACKAGES_PROPERTY pattern result)
 ENDMACRO()
 
 GET_PACKAGES_PROPERTY (PackageIncludePath PackageIncludesPaths)
-GET_PACKAGES_PROPERTY (PackageLibPath     PackageLibsPaths)
-GET_PACKAGES_PROPERTY (PackageName        PackageLibsNames)
 
 SET          (BuildPath ${CurrentPath}/Build)
 REMOVE_FILES ("${BuildPath}")
-
-SOURCE_GROUP               (TREE                              ${ProjectIncludePath} PREFIX "" FILES ${ProjectFilesAndFolders})
-LINK_DIRECTORIES           (${ProjectName}                    ${PackageLibsPaths})
-ADD_EXECUTABLE             (${ProjectName}                    ${ProjectFilesAndFolders})
-TARGET_INCLUDE_DIRECTORIES (${ProjectName} PUBLIC             ${ProjectPathsLists} ${PackageIncludesPaths})
-TARGET_LINK_LIBRARIES      (${ProjectName}                    ${CONAN_LIBS_GTEST} ${PackageLibsNames})
-TARGET_COMPILE_FEATURES    (${ProjectName} PUBLIC cxx_std_17)
-
-SOURCE_GROUP               (TREE                              ${TestIncludePath} PREFIX "" FILES ${TestFilesAndFolders})
-LINK_DIRECTORIES           (${TestsName}                      ${BuildPath}/lib ${PackageLibsPaths})
-ADD_EXECUTABLE             (${TestsName}                      ${TestFilesAndFolders})
-TARGET_INCLUDE_DIRECTORIES (${TestsName}   PUBLIC             ${ProjectPathsLists} ${TestPathsLists})
-TARGET_LINK_LIBRARIES      (${TestsName}                      ${LibraryName} ${PackageLibsNames})
-TARGET_COMPILE_FEATURES    (${TestsName}   PUBLIC cxx_std_17)
 
 SOURCE_GROUP               (TREE                              ${ProjectIncludePath} PREFIX "" FILES ${ProjectFilesAndFolders})
 ADD_LIBRARY                (${LibraryName} STATIC             ${ProjectFilesAndFolders})
