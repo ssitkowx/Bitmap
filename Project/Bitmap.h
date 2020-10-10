@@ -30,10 +30,10 @@ class Bitmap
             uint16_t * Data;
         } Rect;
 
-        Bitmap (const Rectangle & v_rect) : Rect (v_rect) { }
+        explicit Bitmap (const Rectangle & v_rect) : Rect (v_rect) { }
         virtual ~Bitmap () = default;
 
-        virtual void Redraw (const Rectangle & v_rect) { }
+        virtual void Redraw (const Rectangle & v_rect) = 0;
 };
 
 ///////////////////////////////////////////////////////////////////////////////
