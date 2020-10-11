@@ -5,6 +5,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include <stdint.h>
+#include "Rectangle.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 /////////////////////////// CLASSES/STRUCTURES ////////////////////////////////
@@ -13,27 +14,12 @@
 class Bitmap
 {
     public:
-        struct Rectangle
-        {
-            struct
-            {
-                uint16_t Width;
-                uint16_t Height;
-            } Dimension;
+        Rectangle Rect;
 
-            struct
-            {
-                uint16_t X;
-                uint16_t Y;
-            } Coordinate;
-
-            uint16_t * Data;
-        } Rect;
-
-        explicit Bitmap (const Rectangle & v_rect) : Rect (v_rect) { }
+        Bitmap () = default;
         virtual ~Bitmap () = default;
 
-        virtual void Redraw (const Rectangle & v_rect) = 0;
+        virtual void Redraw (const Rectangle & v_rect) { }
 };
 
 ///////////////////////////////////////////////////////////////////////////////
