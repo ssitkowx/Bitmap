@@ -19,7 +19,7 @@ class Bitmap
         Bitmap () = default;
         virtual ~Bitmap () = default;
 
-        virtual void Redraw (const Rectangle & v_rect) { }
+        virtual void Redraw (const Rectangle & v_rect) = 0;
 };
 
 ///////////////////////////////////////////////////////////////////////////////
