@@ -14,7 +14,6 @@
 class Bitmap
 {
     public:
-        uint8_t   Id;
         Rectangle Rect;
 
         Bitmap () = default;
