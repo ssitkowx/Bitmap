@@ -10,12 +10,8 @@
 /////////////////////////// CLASSES/STRUCTURES ////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
-template <class DERIVED_TYPE>
 class Bitmap : public Rectangle
 {
-    friend DERIVED_TYPE;
-    DERIVED_TYPE & derivedType = static_cast <DERIVED_TYPE &>(*this);
-
     public:
         const uint16_t * Data;
         uint8_t          Id;
@@ -23,7 +19,7 @@ class Bitmap : public Rectangle
         Bitmap () = default;
         virtual ~Bitmap () = default;
 
-        void Redraw (const uint8_t v_id, const Rectangle & v_rect) { derivedType.Redraw (v_id, v_rect); }
+        virtual void Redraw (const uint8_t v_id, const Rectangle & v_rect) = 0;
 };
 
 ///////////////////////////////////////////////////////////////////////////////
