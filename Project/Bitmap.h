@@ -13,12 +13,11 @@
 class Bitmap : public Rectangle
 {
     public:
-        const uint16_t * Data;
-        uint8_t          Id;
+        const uint16_t * Data = nullptr;
+        uint8_t          Id   = 0;
 
         Bitmap () = default;
         virtual ~Bitmap () = default;
-
         virtual void Redraw (const uint8_t v_id, const Rectangle & v_rect) = 0;
 };
 
