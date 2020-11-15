@@ -18,7 +18,7 @@ class Bitmap : public Rectangle
 
         Bitmap () = default;
         virtual ~Bitmap () = default;
-        virtual void Redraw (const uint8_t v_id, const Rectangle & v_rect) = 0;
+        virtual void Redraw (const uint8_t v_id, const Rectangle::Coordinates & v_coordinates) = 0;
 };
 
 ///////////////////////////////////////////////////////////////////////////////
