@@ -13,8 +13,9 @@
 class Bitmap : public Rectangle
 {
     public:
-        const uint16_t * Data = nullptr;
-        uint8_t          Id   = 0;
+        const uint16_t * Data     = nullptr;
+        bool             IsButton = false;
+        uint8_t          Id       = 0;
 
         Bitmap () = default;
         virtual ~Bitmap () = default;
