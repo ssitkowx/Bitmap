@@ -15,10 +15,11 @@ class Bitmap : public Rectangle
     public:
         const uint16_t * Data     = nullptr;
         bool             IsButton = false;
-        uint8_t          Id       = 0;
+        uint16_t         Id       = 0;
 
-        Bitmap () = default;
+        Bitmap          () = default;
         virtual ~Bitmap () = default;
+        virtual void Draw   (void)                                                             = 0;
         virtual void Redraw (const uint8_t v_id, const Rectangle::Coordinates & v_coordinates) = 0;
 };
 
