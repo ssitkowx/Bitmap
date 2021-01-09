@@ -4,18 +4,30 @@
 //////////////////////////////// INCLUDES /////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
-#include "Rectangle.h"
+#include <stdint.h>
 
 ///////////////////////////////////////////////////////////////////////////////
 /////////////////////////// CLASSES/STRUCTURES ////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
-class Bitmap : public Rectangle
+class Bitmap
 {
     public:
         const uint16_t * Data     = nullptr;
         bool             IsButton = false;
         uint16_t         Id       = 0;
+
+        struct Dimensions
+        {
+            uint16_t Width;
+            uint16_t Height;
+        } Dimension;
+
+        struct Coordinates
+        {
+            uint16_t X;
+            uint16_t Y;
+        } Coordinate;
 
         Bitmap () = default;
         virtual ~Bitmap () = default;
