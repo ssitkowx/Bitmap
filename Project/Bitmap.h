@@ -13,9 +13,8 @@
 class Bitmap
 {
     public:
-        const uint16_t * Data     = nullptr;
-        bool             IsButton = false;
-        uint16_t         Id       = 0;
+        const uint16_t * Data = nullptr;
+        uint16_t         Id   = 0;
 
         struct Dimensions
         {
