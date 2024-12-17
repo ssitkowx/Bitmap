@@ -30,6 +30,16 @@ class Bitmap
 
         Bitmap () = default;
         virtual ~Bitmap () = default;
+
+    protected:
+        bool isTouched (const uint16_t vId, const Bitmap::Coordinates & vCoordinates)
+        {
+            return (( Id           == vId)                               &&
+                    ( Coordinate.X <= vCoordinates.X)                    &&
+                    ((Coordinate.X + Dimension.Width) >= vCoordinates.X) &&
+                    ( Coordinate.Y <= vCoordinates.Y)                    &&
+                    ((Coordinate.Y + Dimension.Height) >= vCoordinates.Y)) ? true : false;
+        }
 };
 
 ///////////////////////////////////////////////////////////////////////////////
